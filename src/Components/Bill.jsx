@@ -1,11 +1,7 @@
-import { useState } from "react";
-
-export default function Bill() {
+export default function Bill(props) {
   const sumCost = 20000;
   const urExpense = 7000;
   const friendsExpense = sumCost - urExpense;
-
-  const [user, setUser] = useState("Luna");
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -15,7 +11,7 @@ export default function Bill() {
     <div>
       <div className="p-6 bg-slate-200 rounded-xl w-[350px]">
         <h1 className="uppercase font-semibold mb-7 text-xl">
-          Patungan Bareng {user}
+          Patungan Bareng {props.user}
         </h1>
         <form className="flex flex-col justify-center gap-2">
           <label className="flex justify-between">
@@ -36,7 +32,7 @@ export default function Bill() {
           </label>
 
           <label className=" flex justify-between">
-            🙋 Pengeluaran {user}
+            🙋 Pengeluaran {props.user}
             <input
               type="number"
               className="border-2 border-slate-50 p-1 rounded-md w-1/3 text-center placeholder:text-slate-800"
