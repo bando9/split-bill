@@ -1,0 +1,25 @@
+export default function Account(props) {
+  return (
+    <>
+      <div className="card flex gap-7 items-center p-2">
+        <div>
+          <img
+            src={`https://avatar.iran.liara.run/public/${props.gender}`}
+            className="rounded-full w-[50px]"
+            alt="d"
+          />
+        </div>
+        <div>
+          <h3 className="font-semibold">{props.user}</h3>
+          <p>Kamu berhutang Rp 7 ke {props.user}</p>
+        </div>
+        <button
+          className="px-2 py-1 bg-slate-500 rounded-md text-white cursor-pointer hover:bg-slate-400"
+          //   onClick={handleBill}
+        >
+          Pilih
+        </button>
+      </div>
+    </>
+  );
+}
