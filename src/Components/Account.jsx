@@ -4,7 +4,7 @@ export default function Account(props) {
       <div className="card flex gap-7 items-center p-2">
         <div>
           <img
-            src={`https://avatar.iran.liara.run/public/${props.gender}`}
+            src={`https://i.pravatar.cc/150?img=${props.id}`}
             className="rounded-full w-[50px]"
             alt="d"
           />
