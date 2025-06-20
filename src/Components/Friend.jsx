@@ -1,22 +1,24 @@
-export default function Friend({ friends, handleSplitBill, isSelected }) {
+export default function Friend({ friend, onSelected, selectedFriend }) {
+  const isSelected = selectedFriend?.id == friend.id;
+
   return (
-    <li>
-      <img src={friends.image} alt={friends.name} />
-      <h3>{friends.name}</h3>
-      {friends.balance < 0 && (
+    <li className={isSelected ? "selected" : ""}>
+      <img src={friend.image} alt={friend.name} />
+      <h3>{friend.name}</h3>
+      {friend.balance < 0 && (
         <p className="red">
-          Kamu berhutang Rp {Math.abs(friends.balance)} pada {friends.name}
+          Kamu berhutang Rp {Math.abs(friend.balance)} pada {friend.name}
         </p>
       )}
 
-      {friends.balance > 0 && (
+      {friend.balance > 0 && (
         <p className="green">
-          {friends.name} berhutang Rp {Math.abs(friends.balance)} ke kamu
+          {friend.name} berhutang Rp {Math.abs(friend.balance)} ke kamu
         </p>
       )}
 
-      {friends.balance == 0 && <p>Kamu dan {friends.name} tidak ada hutang</p>}
-      <button className="button" onClick={handleSplitBill}>
+      {friend.balance == 0 && <p>Kamu dan {friend.name} tidak ada hutang</p>}
+      <button className="button" onClick={() => onSelected(friend)}>
         {isSelected ? "Tutup" : "Pilih"}
       </button>
     </li>
