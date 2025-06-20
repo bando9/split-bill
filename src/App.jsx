@@ -7,46 +7,52 @@ const InitializeFriend = [
   {
     id: 1,
     name: "Budi",
-    image: "https://i.pravatar.cc/150?u=1",
+    image: "https://i.pravatar.cc/48?u=1",
     balance: 10,
   },
   {
     id: 2,
     name: "Jojo",
-    image: "https://i.pravatar.cc/150?u=2",
+    image: "https://i.pravatar.cc/48?u=2",
     balance: -10,
   },
   {
     id: 3,
     name: "Keysa",
-    image: "https://i.pravatar.cc/150?u=3",
+    image: "https://i.pravatar.cc/48?u=3",
     balance: 0,
   },
 ];
 
 function App() {
-  const [addFriend, setAddFriend] = useState(false);
-  const handleAddFriend = () => {
-    setAddFriend(!addFriend);
+  const [showAddFriend, setShowAddFriend] = useState(false);
+  const [isSelected, setIsSelected] = useState(false);
+  const [friends, setFriends] = useState(InitializeFriend);
+
+  const handleShowAddFriend = () => {
+    setShowAddFriend(!showAddFriend);
   };
 
-  const [isSelected, setIsSelected] = useState(false);
   const handleSplitBill = () => {
     setIsSelected(!isSelected);
   };
+
+  function handleNewFriend(friend) {
+    setFriends([...friends, friend]);
+  }
 
   return (
     <>
       <div className="app">
         <div className="sidebar">
           <FriendList
-            friends={InitializeFriend}
+            friends={friends}
             handleSplitBill={handleSplitBill}
             isSelected={isSelected}
           />
-          {addFriend && <FormAddFriend />}
-          <button className="button" onClick={handleAddFriend}>
-            {addFriend ? "Tutup" : "Tambah Teman"}
+          {showAddFriend && <FormAddFriend onAddFriend={handleNewFriend} />}
+          <button className="button" onClick={handleShowAddFriend}>
+            {showAddFriend ? "Tutup" : "Tambah Teman"}
           </button>
         </div>
 
