@@ -6,19 +6,19 @@ import FormSplitBill from "./Components/FormSplitBill";
 const InitializeFriend = [
   {
     id: 1,
-    name: "Budi",
+    name: "budi",
     image: "https://i.pravatar.cc/48?u=1",
     balance: 10,
   },
   {
     id: 2,
-    name: "Jojo",
+    name: "jojo",
     image: "https://i.pravatar.cc/48?u=2",
     balance: -10,
   },
   {
     id: 3,
-    name: "Keysa",
+    name: "kendall",
     image: "https://i.pravatar.cc/48?u=3",
     balance: 0,
   },
@@ -46,6 +46,22 @@ function App() {
     setFriends([...friends, friend]);
   }
 
+  function handleSplitBill(value) {
+    setFriends(
+      friends.map((friend) => {
+        if (friend.id == selectedFriend.id) {
+          return {
+            ...friend,
+            balance: friend.balance + value,
+          };
+        }
+        return friend;
+      })
+    );
+
+    setSelectedFriend(null);
+  }
+
   return (
     <>
       <div className="app">
@@ -64,7 +80,12 @@ function App() {
         </div>
 
         <div>
-          {selectedFriend && <FormSplitBill selectedFriend={selectedFriend} />}
+          {selectedFriend && (
+            <FormSplitBill
+              selectedFriend={selectedFriend}
+              onSplitBill={handleSplitBill}
+            />
+          )}
         </div>
       </div>
     </>

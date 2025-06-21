@@ -4,20 +4,27 @@ export default function Friend({ friend, onSelected, selectedFriend }) {
   return (
     <li className={isSelected ? "selected" : ""}>
       <img src={friend.image} alt={friend.name} />
-      <h3>{friend.name}</h3>
+      <h3 className="capitalize">{friend.name}</h3>
       {friend.balance < 0 && (
         <p className="red">
-          Kamu berhutang Rp {Math.abs(friend.balance)} pada {friend.name}
+          Kamu berhutang Rp {Math.abs(friend.balance)} pada{" "}
+          <span className="capitalize">{friend.name}</span>
         </p>
       )}
 
       {friend.balance > 0 && (
         <p className="green">
-          {friend.name} berhutang Rp {Math.abs(friend.balance)} ke kamu
+          <span className="capitalize">{friend.name}</span> berhutang Rp{" "}
+          {Math.abs(friend.balance)} ke kamu
         </p>
       )}
 
-      {friend.balance == 0 && <p>Kamu dan {friend.name} tidak ada hutang</p>}
+      {friend.balance == 0 && (
+        <p>
+          Kamu dan <span className="capitalize">{friend.name}</span> tidak ada
+          hutang
+        </p>
+      )}
       <button className="button" onClick={() => onSelected(friend)}>
         {isSelected ? "Tutup" : "Pilih"}
       </button>
